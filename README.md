@@ -22,8 +22,22 @@ dependencies {
 
 
 ## 3、使用
+### 数据源
+数据源继承实体类BaseDecorationBean，必须重写抽象方法getTarget（），该方法返回要转化为拼音的字符串（eg、姓名、地点等），isShowTitle为非必写方法，用于界面需要显示一些在顶部不需要排序的特殊数据。
 
-### 3.1 表头TitleItemDecoration
+eg、
+```
+@Override
+public String getTarget() {
+     return name;
+}
+@Override
+public boolean isShowTitle() {
+     return !isTop;
+}
+```
+
+### 3.2 表头TitleItemDecoration
 
 #### 1、 必要设置
 ```
@@ -52,7 +66,7 @@ itemDecoration.setDatas(dataList);
 
 
  
-### 3.2 右侧导航栏SideBar
+### 3.3右侧导航栏SideBar
 
  ```
   mIndexBar.setmPressedShowTextView(mTvSideBarHint)//设置点击右侧导航栏，显示在屏幕中间的TextView
@@ -68,7 +82,7 @@ itemDecoration.setDatas(dataList);
   ```
    当设置特殊数据时，可与setSpecialTop()方法结合使用，使其右侧导航栏最上边多一个"↑"
   
-### 3.3 搜索
+### 3.4 搜索
 个别需求需要在Activity中设置搜索栏，布局可调用layout_search_input_bar,也可以自定义搜索栏，具体写法可参考MainActivity.java的searchData()和setKeyboardVisibility() 两个方法
 
 注：在Activity的配置文件中设置以下键盘属性，否则会键盘会影响右侧导航栏显示。
@@ -76,6 +90,6 @@ itemDecoration.setDatas(dataList);
  android:windowSoftInputMode="adjustPan|stateHidden"
  ```
  
-### 3.4 界面
+## 4 界面
 
 ![没特殊表头](https://github.com/jhj24/DivideItemDecoration/blob/master/app/screenshot/nospecialtitle.png)                ![有特殊表头](https://github.com/jhj24/DivideItemDecoration/blob/master/app/screenshot/withspecialtitle.png)
