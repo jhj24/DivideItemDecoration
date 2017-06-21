@@ -25,21 +25,28 @@ dependencies {
 
 ### 3.1 表头TitleItemDecoration
 
-
+#### 1、 必要设置
 ```
 TitleItemDecoration itemDecoration = new TitleItemDecoration(context, type);
-//在使用addTiemDecoration之前可以设置分割线的颜色，分组字符的颜色等，具体看TitleItemDecoration类
 recyclerView.addItemDecoration(itemDecoration);
 
 ...
 //数组更新完成后
 itemDecoration.setDatas(dataList);
 ```
+#### 2、自定义分割线样式：
+- `setmTitleHeight(int mTitleHeight)`：有首字母时，分割线高度
+- `setColorTitleBg(int colorTitleBg)`：有首字母时，分割线颜色
+- `setColorTitleLine(int colorTitleBg)`：没首字母时，分割线颜色
+- `setColorTitleFont(int colorTitleFont)`：有首字母时，首字母字体颜色
+- `setTitleFontSize(int mTitleFontSize)`：有首字母时，首字母字体大小
 
-type属性：
- 1. `TitleItemDecoration.DECORATION_TOP_COVER_TYPE`：向上滑动时，下方的分组title位于顶部分组title上方,逐渐覆盖
- 1. `TitleItemDecoration.DECORATION_BOTTOM_COVER_TYPE`：向上滑动时，下方的分组title位于顶部分组下方title，逐渐覆盖
- 1. `TitleItemDecoration.DECORATION_FOLD_TYPE`：向上滑动时，顶部分组被下方的分组title顶上去
+*注意单位dp→px和sp→px的单位换算，界面显示都是以px为单位的*
+
+#### 3、type属性：
+ - `TitleItemDecoration.DECORATION_TOP_COVER_TYPE`：向上滑动时，下方的分组title位于顶部分组title上方,逐渐覆盖
+ - `TitleItemDecoration.DECORATION_BOTTOM_COVER_TYPE`：向上滑动时，下方的分组title位于顶部分组下方title，逐渐覆盖
+ - `TitleItemDecoration.DECORATION_FOLD_TYPE`：向上滑动时，顶部分组被下方的分组title顶上去
  
 ### 3.2 右侧导航栏SideBar
  ```
