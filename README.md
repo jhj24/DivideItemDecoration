@@ -28,6 +28,7 @@ dependencies {
 
 ```
 TitleItemDecoration itemDecoration = new TitleItemDecoration(context, type);
+//在使用addTiemDecoration之前可以设置分割线的颜色，分组字符的颜色等，具体看TitleItemDecoration类
 recyclerView.addItemDecoration(itemDecoration);
 
 ...
@@ -61,3 +62,7 @@ type属性：
 ```
  android:windowSoftInputMode="adjustPan|stateHidden"
  ```
+ 
+### 3.4 界面
+
+![没特殊表头](https://github.com/jhj24/DivideItemDecoration/blob/master/app/screenshot/nospecialtitle.png)                ![有特殊表头](https://github.com/jhj24/DivideItemDecoration/blob/master/app/screenshot/withspecialtitle.png)
