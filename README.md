@@ -53,10 +53,11 @@ itemDecoration.setDatas(dataList);
 
  
 ### 3.2 右侧导航栏SideBar
+
  ```
   mIndexBar.setmPressedShowTextView(mTvSideBarHint)//设置点击右侧导航栏，显示在屏幕中间的TextView
            .setmLayoutManager(layoutManager)
-           .setSpecialTop() //右侧导航栏最上边多一个"↑"，没设置特殊表头可不用设置
+           //.setSpecialTop() 右侧导航栏最上边多一个"↑"，没设置特殊表头可不用设置
            .setmSourceDatas(mDatas)//设置数据
            .invalidate();
  
@@ -65,8 +66,8 @@ itemDecoration.setDatas(dataList);
   ```
    mDatas.add((Bean) new Bean("微信").setTop(true).setBaseAlphaTag("↑"));
   ```
-  
-  
+   当设置特殊数据时，可与setSpecialTop()方法结合使用，使其右侧导航栏最上边多一个"↑"
+  
 ### 3.3 搜索
 个别需求需要在Activity中设置搜索栏，布局可调用layout_search_input_bar,也可以自定义搜索栏，具体写法可参考MainActivity.java的searchData()和setKeyboardVisibility() 两个方法
 
