@@ -1721,7 +1721,7 @@
 54E3 pou
 54E4 mang
 54E5 ge
-54E6 e,o,wo
+54E6 o,e,wo
 54E7 chi
 54E8 shao
 54E9 li

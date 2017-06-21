@@ -122,7 +122,7 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
         return this;
     }
 
-    public TitleItemDecoration setmDatas(List<? extends ITitleItemInterface> mDatas) {
+    public TitleItemDecoration setDatas(List<? extends ITitleItemInterface> mDatas) {
         this.mDatas = mDatas;
         return this;
     }

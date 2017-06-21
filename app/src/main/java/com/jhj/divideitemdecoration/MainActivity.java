@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 .invalidate();
 
         adapter.setDatas(mDatas);
-        itemDecoration.setmDatas(mDatas);
+        itemDecoration.setDatas(mDatas);
         recyclerView.setAdapter(adapter);
         searchData(mDatas);
     }
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.addItemDecoration(itemDecoration);
                 }
                 adapter.setDatas(dataList);
-                itemDecoration.setmDatas(dataList);
+                itemDecoration.setDatas(dataList);
                 recyclerView.setAdapter(adapter);
             }
 
