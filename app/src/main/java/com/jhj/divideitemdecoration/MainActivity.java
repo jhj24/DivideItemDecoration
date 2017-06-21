@@ -33,13 +33,19 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 右侧边栏导航区域
      */
-    private SideBar mIndexBar;
+    private SideBar sideBar;
 
     /**
-     * 显示指示器DialogText
+     * 点击右侧导航栏显示将点击的字符显示在屏幕中间的TextView
      */
-    private TextView mTvSideBarHint;
+    private TextView tvCenter;
+    /**
+     * 搜索栏控件
+     */
     private RecyclerView recyclerView;
+    /**
+     * 搜索栏的输入框
+     */
     private EditText etSearch;
 
 
@@ -47,48 +53,57 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTvSideBarHint = (TextView) findViewById(R.id.tvSideBarHint);
-        mIndexBar = (SideBar) findViewById(R.id.indexBar);
-        recyclerView = (RecyclerView) findViewById(R.id.rv);
-        etSearch = (EditText) findViewById(R.id.et_search);
+        initView();
 
-
+        adapter = new TestAdapter(MainActivity.this);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new TestAdapter(this);
-        itemDecoration = new TitleItemDecoration(this, TitleItemDecoration.DECORATION_TOP_COVER_TYPE);
+        itemDecoration = new TitleItemDecoration(MainActivity.this, TitleItemDecoration.DECORATION_TOP_COVER_TYPE);
         recyclerView.addItemDecoration(itemDecoration);
+        recyclerView.setLayoutManager(layoutManager);
+
         initDatas(getResources().getStringArray(R.array.provinces));
         setKeyboardVisibility();
 
     }
 
+    private void initView() {
+        tvCenter = (TextView) findViewById(R.id.tvSideBarHint);
+        sideBar = (SideBar) findViewById(R.id.indexBar);
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
+        etSearch = (EditText) findViewById(R.id.et_search);
+    }
+
     /**
-     * 组织数据源
+     * 初始化数据
      *
      * @param data
      * @return
      */
     private void initDatas(final String[] data) {
         List<Bean> mDatas = new ArrayList<>();
-        mDatas.add((Bean) new Bean("新的朋友").setTop(true).setBaseAlphaTag("!"));
-        mDatas.add((Bean) new Bean("群聊").setTop(true).setBaseAlphaTag("!"));
+        mDatas.add((Bean) new Bean("新的朋友").setTop(true).setBaseAlphaTag("↑"));
+        mDatas.add((Bean) new Bean("群聊").setTop(true).setBaseAlphaTag("↑"));
         for (String aData : data) {
             Bean bean = new Bean();
             bean.setName(aData);//设置城市名称
             mDatas.add(bean);
         }
 
-        mIndexBar.setmPressedShowTextView(mTvSideBarHint)//设置HintTextView
+        initUI(mDatas);
+        searchData(mDatas);
+    }
+
+    private void initUI(List<Bean> dataList) {
+
+        sideBar.setmPressedShowTextView(tvCenter)//设置HintTextView
                 .setmLayoutManager(layoutManager)
                 .setSpecialTop()
-                .setmSourceDatas(mDatas)//设置数据
+                .setmSourceDatas(dataList)//设置数据
                 .invalidate();
 
-        adapter.setDatas(mDatas);
-        itemDecoration.setDatas(mDatas);
+        adapter.setDatas(dataList);
+        itemDecoration.setDatas(dataList);
         recyclerView.setAdapter(adapter);
-        searchData(mDatas);
     }
 
     /**
@@ -107,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 List<Bean> dataList;
-                recyclerView.removeItemDecoration(itemDecoration);
+                //recyclerView.removeItemDecoration(itemDecoration);
                 if (TextUtils.isEmpty(etSearch.getText())) {
                     dataList = beanList;
                 } else {
@@ -119,14 +134,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                adapter = new TestAdapter(MainActivity.this);
-                itemDecoration = new TitleItemDecoration(MainActivity.this, TitleItemDecoration.DECORATION_TOP_COVER_TYPE);
-                if (dataList.size() > 0) {
-                    recyclerView.addItemDecoration(itemDecoration);
-                }
-                adapter.setDatas(dataList);
-                itemDecoration.setDatas(dataList);
-                recyclerView.setAdapter(adapter);
+                initUI(dataList);
             }
 
             @Override
@@ -135,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     /**
      * 键盘可见性
