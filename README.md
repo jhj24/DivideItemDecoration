@@ -68,7 +68,8 @@ itemDecoration.setDatas(dataList);
   
   
 ### 3.3 搜索
-个别需求需要在Activity中设置搜索栏，布局可调用layout_search_input_bar,和可自定义搜索栏，具体写法MainActivity.java的searchData()和setKeyboardVisibility() 两个方法
+个别需求需要在Activity中设置搜索栏，布局可调用layout_search_input_bar,也可以自定义搜索栏，具体写法可参考MainActivity.java的searchData()和setKeyboardVisibility() 两个方法
+
 注：在Activity的配置文件中设置以下键盘属性，否则会键盘会影响右侧导航栏显示。
 ```
  android:windowSoftInputMode="adjustPan|stateHidden"
