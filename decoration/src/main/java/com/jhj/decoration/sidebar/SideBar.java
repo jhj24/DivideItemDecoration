@@ -31,7 +31,7 @@ import static java.util.Arrays.asList;
 public class SideBar extends View {
 
     //#在最后面（默认的数据源）
-    public static String[] INDEX_STRING = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
+    private static String[] INDEX_STRING = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
             "W", "X", "Y", "Z", "#"};
     //索引数据源
@@ -67,20 +67,6 @@ public class SideBar extends View {
         init(context, attrs, defStyleAttr);
     }
 
-    public int getHeaderViewCount() {
-        return mHeaderViewCount;
-    }
-
-    /**
-     * 设置Headerview的Count
-     *
-     * @param headerViewCount
-     * @return
-     */
-    public SideBar setHeaderViewCount(int headerViewCount) {
-        mHeaderViewCount = headerViewCount;
-        return this;
-    }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         dataHandleUtil = new DataHandleUtil(context);
@@ -242,7 +228,7 @@ public class SideBar extends View {
     /**
      * 当前被按下的index的监听器
      */
-    public interface onIndexPressedListener {
+    private interface onIndexPressedListener {
         void onIndexPressed(int index, String text);//当某个Index被按下
 
         void onMotionEventEnd();//当触摸事件结束（UP CANCEL）
@@ -250,11 +236,7 @@ public class SideBar extends View {
 
     private onIndexPressedListener mOnIndexPressedListener;
 
-    public onIndexPressedListener getmOnIndexPressedListener() {
-        return mOnIndexPressedListener;
-    }
-
-    public void setmOnIndexPressedListener(onIndexPressedListener mOnIndexPressedListener) {
+    private void setmOnIndexPressedListener(onIndexPressedListener mOnIndexPressedListener) {
         this.mOnIndexPressedListener = mOnIndexPressedListener;
     }
 
@@ -329,7 +311,7 @@ public class SideBar extends View {
         }
         for (int i = 0; i < mSourceDatas.size(); i++) {
             if (tag.equals(mSourceDatas.get(i).getBaseAlphaTag())) {
-                return i + getHeaderViewCount();
+                return i;
             }
         }
         return -1;

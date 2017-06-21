@@ -53,9 +53,6 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
     private Rect mBounds;//用于存放测量文字Rect
     private int mTitleHeight;//title的高
 
-    private int mHeaderViewCount = 0;
-
-
     public TitleItemDecoration(Context context, int type) {
         super();
         this.type = type;
@@ -127,15 +124,6 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
         return this;
     }
 
-    public TitleItemDecoration setHeaderViewCount(int headerViewCount) {
-        mHeaderViewCount = headerViewCount;
-        return this;
-    }
-
-    private int getHeaderViewCount() {
-        return mHeaderViewCount;
-    }
-
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
@@ -147,7 +135,6 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
                     .getLayoutParams();
             int position = params.getViewLayoutPosition();
-            position -= getHeaderViewCount();
             //pos为1，size为1，1>0? true
             if (mDatas == null || mDatas.isEmpty() || position > mDatas.size() - 1 || position < 0) {
                 continue;//越界
@@ -209,12 +196,11 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(Canvas c, final RecyclerView parent, RecyclerView.State state) {//最后调用 绘制在最上层
         int pos = ((LinearLayoutManager) (parent.getLayoutManager())).findFirstVisibleItemPosition();
-        pos -= getHeaderViewCount();
         if (mDatas == null || mDatas.isEmpty() || pos > mDatas.size() - 1 || pos < 0 || !mDatas.get(pos).isShowTitle()) {
             return;//越界
         }
         String tag = getAlphaTag(pos);
-        View child = parent.findViewHolderForLayoutPosition(pos + getHeaderViewCount()).itemView;
+        View child = parent.findViewHolderForLayoutPosition(pos).itemView;
         boolean flag = false;//定义一个flag，Canvas是否位移过的标志
         if ((pos + 1) < mDatas.size()) {//防止数组越界（一般情况不会出现）
             if (!tag.equals(getAlphaTag(pos + 1))) {//当前第一个可见的Item的tag，不等于其后一个item的tag，说明悬浮的View要切换了
@@ -248,7 +234,6 @@ public class TitleItemDecoration extends RecyclerView.ItemDecoration {
         //super里会先设置0 0 0 0
         super.getItemOffsets(outRect, view, parent, state);
         int position = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewLayoutPosition();
-        position -= getHeaderViewCount();
         if (mDatas == null || mDatas.isEmpty() || position > mDatas.size() - 1) {//pos为1，size为1，1>0? true
             return;//越界
         }
