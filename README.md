@@ -37,7 +37,9 @@ public boolean isShowTitle() {
 }
 ```
 
-### 3.2 表头TitleItemDecoration
+### 3.2 分割线TitleItemDecoration
+
+带文字的分割线，文字距左侧的距离为默认子布局的`padding_left`。
 
 #### 1、 必要设置
 ```
@@ -51,9 +53,9 @@ itemDecoration.setDatas(dataList);
 
 
 #### 2、type属性：
- - `TitleItemDecoration.DECORATION_TOP_COVER_TYPE`：向上滑动时，下方的分组title位于顶部分组title上方,逐渐覆盖
- - `TitleItemDecoration.DECORATION_BOTTOM_COVER_TYPE`：向上滑动时，下方的分组title位于顶部分组下方title，逐渐覆盖
- - `TitleItemDecoration.DECORATION_FOLD_TYPE`：向上滑动时，顶部分组被下方的分组title顶上去
+ - `TitleItemDecoration.DECORATION_TOP_COVER_TYPE`：向上滑动时，下方的分组分割线位于顶部分组分割线上方,逐渐覆盖
+ - `TitleItemDecoration.DECORATION_BOTTOM_COVER_TYPE`：向上滑动时，下方的分组分割线位于顶部分组下方分割线，逐渐覆盖
+ - `TitleItemDecoration.DECORATION_FOLD_TYPE`：向上滑动时，顶部分组被下方的分组分割线顶上去
  
 #### 3、自定义分割线样式：
 - `setmTitleHeight(int mTitleHeight)`：有首字母时，分割线高度
