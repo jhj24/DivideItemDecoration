@@ -104,7 +104,7 @@ public class SideBar extends View {
                 if (mLayoutManager != null) {
                     int position = getPosByTag(text);
                     if (position != -1) {
-                        mLayoutManager.scrollToPositionWithOffset(position, 0);
+                        mLayoutManager.scrollToPositionWithOffset(position,0);
                     }
                 }
             }
