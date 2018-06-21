@@ -1,6 +1,6 @@
 # DivideItemDecoration
 ## 1、简介
-自定义表头Decoration和右侧SideBar导航。
+自定义分割线Decoration和右侧SideBar导航。
 
 
 ## 2、依赖
