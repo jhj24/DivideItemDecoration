@@ -1,6 +1,7 @@
 # DivideItemDecoration
 ## 1、简介
 自定义分割线Decoration和右侧SideBar导航。
+
 SideBar设置的LayoutManager与显示数据的RecyclerView的设置LayoutManager为同一个全局LayoutManager
 
 
